@@ -1,0 +1,39 @@
+function doGet() {
+  const htmlTemplate = HtmlService.createTemplateFromFile('index');
+  htmlTemplate.errorMsg = "";
+  return htmlTemplate.evaluate();
+}
+
+function doPost(e) {
+  const sheet = SpreadsheetApp.openById("1Mr-L5s_3JXCg0w0CEXn4aVxN82QEITkED9PBr3STmJo").getSheetByName("DB");
+  const data = sheet.getDataRange().getValues();
+
+  let examNum;
+  let result;
+  let score;
+  let yotei;
+  let htmlTemplate;
+
+  for ( const record of data ){
+    if ( e.parameter.examNum == record[0] && e.parameter.password == record[1] ){
+      examNum = record[0];
+      result = record[2];
+      score = record[3];
+      yotei = record[4];
+      break;
+    }
+  }
+
+  if ( result && score ){
+    htmlTemplate = HtmlService.createTemplateFromFile('result');
+    htmlTemplate.examNum = examNum;
+    htmlTemplate.result = result;
+    htmlTemplate.score = score;
+    htmlTemplate.yotei = yotei;
+  } else {
+    htmlTemplate = HtmlService.createTemplateFromFile('index');
+    htmlTemplate.errorMsg = "受験番号またはパスワードが誤っています";
+  }
+
+  return htmlTemplate.evaluate();
+}
