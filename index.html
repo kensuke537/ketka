@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <base target="_top">
+   <?!= HtmlService.createHtmlOutputFromFile('css').getContent(); ?>
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>結果照会サイト</title>
+  </head>
+  <body>
+    <div class="form-wrapper">
+      <h1>結果紹介サイト</h1>
+     <form method="post" action="デプロイしたURL">
+      <p><?=errorMsg ?></p>
+      <div class="form-item">
+        <label for="exam-num">受験番号</label>
+        <input type="text" name="examNum" required>
+      </div>
+      <div class="form-item">
+        <label for="exam-num">パスワード</label>
+        <input type="password" name="password" required>
+      </div>
+      <div class="button-panel">
+        <input type="submit" class="button" title="結果照会" value="結果照会"></input>
+      </div>
+    </form>
+  </body>
+</html>
