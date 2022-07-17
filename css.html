@@ -1,42 +1,196 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <base target="_top">
-   <?!= HtmlService.createHtmlOutputFromFile('css').getContent(); ?>
-   <meta name="viewport" content="width=device-width, initial-scale=1">
-   <meta charset="utf-8">
-    <title>結果照会サイト</title>
-  </head>
-  <body>
-    <div class=index-div>
-      <h1>結果照会サイト</h1>
-      <h2>採点結果</h2>
-     </div>
-    </div>
-    <table>
-        <tr>
-          <th>受験番号</th>
-          <td><?=examNum ?></td>
-        </tr>
-        <tr>
-          <th>合否</th>
-          <td><?=result ?></td>
-        </tr>
-        <tr>
-          <th>点数</th>
-          <td><?=score ?> 点</td>
-        </tr>
-        <tr>
-          <th>予定</th>
-          <td><?=yotei ?> </td>
-        </tr>
-    </table>
-    <div class="btn-wrapper">
-  <a href="<?=yotei ?>" class="contact-btn-style btn">
-    <i class="fa fa-envelope"></i>
-    N公式サイトはこちら
-    <i class="fas fa-chevron-right"></i>
-  </a>
-</div>
-  </body>
-</html>
+<style type="text/css">
+/* Fonts */
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400);  //英数字のフォント
+//日本語のフォントはsans-serifで統一（もともと用意されてる）
+
+/* Simple Reset */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* body */
+body {
+ background: #e9e9e9;
+ color: #5e5e5e;
+ font: 400 87.5%/1.5em sans-serif;
+}
+
+/* エラー画面レイアウト */
+h2 {
+ text-align: center;
+ padding: 1em 0;
+}
+
+/* Form Layout */
+.form-wrapper {
+ background: #fafafa;
+ margin: 3em auto;
+ padding: 3em 1em;
+ max-width: 370px;
+}
+
+h1 {
+ text-align: center;
+ padding: 1em 0;
+}
+
+form {
+ padding: 0 1.5em;
+}
+
+.form-item {
+ margin-bottom: 0.75em;
+ width: 100%;
+}
+
+.form-item input {
+ background: #fafafa;
+ border: none;
+ border-bottom: 2px solid #e9e9e9;
+ color: #666;
+ font-family: sans-serif;
+ font-size: 1em;
+ height: 50px;
+ transition: border-color 0.3s;
+ width: 100%;
+}
+
+.form-item input:focus {
+ border-bottom: 2px solid #c0c0c0;
+ outline: none;
+}
+
+.button-panel {
+ margin: 2em 0 0;
+ width: 100%;
+}
+
+.button-panel .button {
+ background: #f16272;
+ border: none;
+ color: #fff;
+ cursor: pointer;
+ height: 50px;
+ font-family: 'Open sans', sans-serif;
+ font-size: 1.2em;
+ letter-spacing: 0.05em;
+ text-align: center;
+ text-transform: uppercase;
+ transition: background 0.3s ease-in-out;
+ width: 100%;
+}
+
+.button:hover {
+ background: #ee3e52;
+}
+
+/* index画面レイアウト */
+.index-div {
+ background: #fafafa;
+ margin: 3em auto;
+ padding: 3em 1em;
+ max-width: 370px;
+}
+div.btn-wrapper {
+  /* 中央揃え */
+  text-align: center;
+  margin-top: 2em;
+}
+
+a.btn {
+  /* 下線なし */
+  text-decoration: none;
+  /* 横に並べる */
+  position: inline-block;
+  /* 折り返しなし */
+  white-space: nowrap;
+  
+  /* Font Awesameを配置する場合に設定 */
+  position: relative;
+}
+
+/* ボタンの装飾 */
+a.contact-btn-style {
+  /* 文字の色 */
+  color: #fff;
+  /* 文字の太さ */
+  font-weight: 700;
+  /* 背景色 */
+  background-color: #ff4500;
+  /* パッディング */
+  padding: 1rem 3rem;
+  /* 枠線 */
+  border: 3px solid #ff4500;
+  /* 角丸 */
+  border-radius: 100vh;
+}
+
+/* Font Awesame配置 */
+.fa-envelope {
+  /* 親要素でrelativeを設定しておく */
+  position: absolute;
+  /* 中央に配置 */
+  top: calc(50% - 0.5em);
+  /* 左からの位置 */
+  left: 1em;
+}
+
+/* Font Awesame配置 */
+.fa-chevron-right {
+  /* 親要素でrelativeを設定しておく */
+  position: absolute;
+  /* 中央に配置 */
+  top: calc(50% - 0.5em);
+  /* 右からの位置 */
+  right: 1em;
+}
+
+/* マウスポインタ―が要素の上に来た場合 */
+.contact-btn-style:hover {
+  /* 文字の色 */
+  color: #ff4500;
+  /* 背景色 */
+  background: #fff;
+}
+table{
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table tr{
+  border-bottom: solid 2px white;
+}
+
+table tr:last-child{
+  border-bottom: none;
+}
+
+table th{
+  position: relative;
+  text-align: left;
+  width: 30%;
+  background-color: #52c2d0;
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+}
+
+table th:after{
+  display: block;
+  content: "";
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  top:calc(50% - 10px);
+  right:-10px;
+  border-left: 10px solid #52c2d0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+}
+
+table td{
+  text-align: left;
+  width: 70%;
+  text-align: center;
+  background-color: #eee;
+  padding: 10px 0;
+}
+</style>
