@@ -5,7 +5,7 @@ function doGet() {
 }
 
 function doPost(e) {
-  const sheet = SpreadsheetApp.openById("1Mr-L5s_3JXCg0w0CEXn4aVxN82QEITkED9PBr3STmJo").getSheetByName("DB");
+  const sheet = SpreadsheetApp.openById("シートURl").getSheetByName("シート名");
   const data = sheet.getDataRange().getValues();
 
   let examNum;
