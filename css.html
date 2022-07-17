@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+   <?!= HtmlService.createHtmlOutputFromFile('css').getContent(); ?>
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta charset="utf-8">
+    <title>結果照会サイト</title>
+  </head>
+  <body>
+    <div class=index-div>
+      <h1>結果照会サイト</h1>
+      <h2>採点結果</h2>
+     </div>
+    </div>
+    <table>
+        <tr>
+          <th>受験番号</th>
+          <td><?=examNum ?></td>
+        </tr>
+        <tr>
+          <th>合否</th>
+          <td><?=result ?></td>
+        </tr>
+        <tr>
+          <th>点数</th>
+          <td><?=score ?> 点</td>
+        </tr>
+        <tr>
+          <th>予定</th>
+          <td><?=yotei ?> </td>
+        </tr>
+    </table>
+    <div class="btn-wrapper">
+  <a href="<?=yotei ?>" class="contact-btn-style btn">
+    <i class="fa fa-envelope"></i>
+    N公式サイトはこちら
+    <i class="fas fa-chevron-right"></i>
+  </a>
+</div>
+  </body>
+</html>
